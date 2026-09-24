@@ -1,0 +1,135 @@
+[gottschalk.w@c0659 ~]$ #task1 showing names of files in data directory
+[gottschalk.w@c0659 ~]$ #changing directory to data
+[gottschalk.w@c0659 ~]$ cd /courses/BIOL2406.202710/data/
+[gottschalk.w@c0659 data]$ #showing names of files
+[gottschalk.w@c0659 data]$ ls
+At_prot_abr.fasta  Sea_cuke
+
+[gottschalk.w@c0659 data]$ #task 2 using . and * with grep
+[gottschalk.w@c0659 data]$ #chaning to directory with data files
+[gottschalk.w@c0659 data]$ cd /courses/BIOL2406.202710/students/gottschalk.w/seq.files/
+[gottschalk.w@c0659 seq.files]$ ls
+At_genes.gff  At_prot_abr.fasta  chr1.fasta  excel_data.csv  intron_IME_data.fasta
+[gottschalk.w@c0659 seq.files]$ #grep without . or *
+[gottschalk.w@c0659 seq.files]$ grep -i ACGT intron_IME_data.fasta | head
+GTAATAATAACGTCCCTCTTCTTCCTCAACTTAGTTCCTGTCCTCACATTATGCCATATA
+ATTAATAATCTCGTAGAAAACGTAGATTTTAGCTGCTGTAGGCAATAATCTCTCTGTCCA
+TGCTGGAACTAGAAATTTGACGTGTAGCAAAACTTGAGAACAGATCATGAAGTTTTTTTT
+CTTTTTCTGAAAGCACTATCTATGTTTTGGTATGTCCTTAATTTGCCTAACCACCACGTG
+AAACGTTGGCAACATAGGTAGGGTAGATGTTTATCATCTAGCTTGAAATACTATTAATCT
+AACAGAGGCTAGAACTAAAATATGACTAGGTTTGTTACGTTTTTTCTGAGCATGTTCTTA
+TGTTAGATCACATTATACGTGTTCTCCTTCTCAACCATATAGATTCAAATTTATAGCGTG
+CTGGGAGTTTTGGGATGTTTGACGTTTGTTGGTGGAAATAG
+GTTTTGTGCTTTTACGTTTGTTCATCTTTCGTTTCAGCTTAGCCTATTACCTAATTCTGA
+TGCATATTGAATTTTAACATACGTTTCTGGACTGTAGACAACAGCTTCAGATTAGTTCGG
+[gottschalk.w@c0659 seq.files]$ grep -i AC.GT intron_IME_data.fasta | head
+TCTCAATCAGATTTGTCAATTTGACTGTTTGTAG
+GTGCGTCATCTCAACCGTCAGATTTCTTTCCCCATCATGATTCTCTCGTTTCAATAATTA
+GTATGAACTCCATCTGACTACTACATACCCTCTGTTTATGTGTGTGGTACAGTTTGTTTT
+GTAACTTATTTATTGATTGAATCAGTAACTGTATTGTTATCATGATTTGTGAATATGTGA
+ATCGAAAACTGTATATGGTTATGATCATCAG
+GTAAATTCACTTTAGAATTTGAATCAGCTCCACATGAATGTTCGTGTTACAGTTTTAAAA
+TGCTTATTTGATTTTTCGACTGTTCTCTTGGTATTTGGAGAACTCTATCCTGGTTAGAAT
+GATGTTAACAAACTGTGACAATATGTGTCTTCACTGTAGTGAATGTTGACATGTTTCGGT
+TGTAGAACGCTAAATGTGTTTGCTATCCACTGTACTGTTATCAGATTGGCACATATTGAG
+ATGTGTATACTTGTCTGTACCGTGCATAAGCCAAGAATATTGCGTGCATTGAAGGAATTC
+[gottschalk.w@c0659 seq.files]$ grep -i AC*GT intron_IME_data.fasta | head
+TGAAATTGAGTTTTCGGATTCAGTGTTGTCGAGATTCTATATCTGATTCAGTGATCTAAT
+GTTAGTTTTCAATGTTGCTGCTTCTGATTGTTGAAAGTGTTCATACATTTGTGAATTTAG
+TTGATAAAATCTGAACTCTGCATGATCAAAGTTACTTCTTTACTTAGTTTGACAGGGACT
+TTTTTTGTGAATGTGGTTGAGTAGAATTTAGGGCTTTGGATTAAATGTGACAAGATTTTG
+CTAGTAAGTTTAGAGTCTTGCTAGTAATTCAGTTAGTTTGTGATGTTGCTGCTTCAGATT
+GTGTACTTTTCTATTGTTAAAGAGGAAGTTTCAGATCGTGTTCTTGACAGAATCTGGAAT
+GCTTGATCAATAGTTACTCCTTTTCTGAGTCTAATTGGACAATTTTTTGAATGTGGCTGA
+CTAGAACTTGAGGTGATGTTGCTAGTAATTCGGTTGCTATGTTGCTGCTTCAGATTGTGT
+CAATTTCTATCGTGAAAGAGTAGTTTCATCAGATCGTATTCTTTGACAGAACCTGGACTG
+CATGATCAATAGTCAGCTACTCCTTTTCTGACTCTAGTTGGAAACCTTTTCATACATTTT
+[gottschalk.w@c0659 seq.files]$ grep -i AC.*GT intron_IME_data.fasta | head
+GTATACACATCTCTCTACTTTCATATTTTGCATCTCTAACGAAATCGGATTCCGTCGTTG
+GTTAGTTTTCAATGTTGCTGCTTCTGATTGTTGAAAGTGTTCATACATTTGTGAATTTAG
+TTGATAAAATCTGAACTCTGCATGATCAAAGTTACTTCTTTACTTAGTTTGACAGGGACT
+GTGTACTTTTCTATTGTTAAAGAGGAAGTTTCAGATCGTGTTCTTGACAGAATCTGGAAT
+GCTTGATCAATAGTTACTCCTTTTCTGAGTCTAATTGGACAATTTTTTGAATGTGGCTGA
+CTAGAACTTGAGGTGATGTTGCTAGTAATTCGGTTGCTATGTTGCTGCTTCAGATTGTGT
+CATGATCAATAGTCAGCTACTCCTTTTCTGACTCTAGTTGGAAACCTTTTCATACATTTT
+CTGAATGTGACTGGAAGAATGAAATGTGTTAAGATCTTGTTCGTTAAGTTTAGAGTCTTG
+TGTGTGTTACTTATAAGATATATCTCATTCTGTTGCTTGTTAATATATTTCTACTAAAG
+GTAATAATAACGTCCCTCTTCTTCCTCAACTTAGTTCCTGTCCTCACATTATGCCATATA
+
+[gottschalk.w@c0659 seq.files]$ #task 3 using grep-c across multiple .fasta
+[gottschalk.w@c0659 seq.files]$ #counting for ACGTC
+[gottschalk.w@c0659 seq.files]$ grep -c ACGTC *.fasta
+At_prot_abr.fasta:0
+chr1.fasta:9920
+intron_IME_data.fasta:1632
+
+[gottschalk.w@c0659 seq.files]$ #task 4 using less to search for patterns with \ and ?
+[gottschalk.w@c0659 seq.files]$ less intron_IME_data.fasta
+
+[gottschalk.w@c0659 seq.files]$ #task 5 turning chr1.fasta into all lowercase
+[gottschalk.w@c0659 seq.files]$ #use just tr on the file
+[gottschalk.w@c0659 seq.files]$ tr 'A-Z' 'a-z' < chr1.fasta > smallcase_chr1.fasta
+
+[gottschalk.w@c0659 seq.files]$ #task 6 using sed to change name of file
+[gottschalk.w@c0659 seq.files]$ #using sed to change smallcase.chr1 to smallcase.chromosome1
+[gottschalk.w@c0659 seq.files]$ head -n 1 smallcase_chr1.fasta
+>chr1 dumped from adb: mar/14/08 12:28; last updated: 2007-12-20
+[gottschalk.w@c0659 seq.files]$ head -n 1 smallcase_chr1.fasta | sed 's/chr1/smallcase.chromosome1/'
+>smallcase.chromosome1 dumped from adb: mar/14/08 12:28; last updated: 2007-12-20
+
+[gottschalk.w@c0659 seq.files]$ #task 7 subset 500 lines of At_genes.gff into a new file
+[gottschalk.w@c0659 seq.files]$ head -n 500 At_genes.gff > At_genes_500_subset.gff
+[gottschalk.w@c0659 seq.files]$ ls
+At_genes_500_subset.gff  At_genes_subset.gff  chr1.fasta      intron_IME_data.fasta
+At_genes.gff             At_prot_abr.fasta    excel_data.csv  smallcase_chr1.fasta
+[gottschalk.w@c0659 seq.files]$ wc -l At_genes_500_subset.gff
+500 At_genes_500_subset.gff
+
+[gottschalk.w@c0659 seq.files]$ #task 8 subset two columns from At_genes.gff and display 10 lines
+[gottschalk.w@c0659 seq.files]$ cut -f 1,4 At_genes.gff | head -n 10
+Chr1    1
+Chr1    3631
+Chr1    3631
+Chr1    3760
+Chr1    3631
+Chr1    3631
+Chr1    3760
+Chr1    3996
+Chr1    3996
+Chr1    4486
+[gottschalk.w@c0659 seq.files]$ #head shows just the 10 lines and cut does 1 and 4
+[gottschalk.w@c0659 seq.files]$ #task 9 explaining the following command
+[gottschalk.w@c0659 seq.files]$ tr '\n' '@' < intron_IME_data.fasta | sed 's/>/#>/g' | tr '#' '\n' | grep "i1_.*5UTR" | sort -nk 3 -t "_" | head -n 5 | tr '@' '\n'
+
+>AT4G39070.1_i1_7_5UTR 
+GTGTGAAACCAAAACCAAAACAAGTCAATTTGGGGGCATTGAAAGCAAAGGAGAGAGTAG
+CTATCAAATCAAGAAAATGAGAGGAAGGAGTTAAAAAAGACAAAGGAAACCTAAGCTGCT
+TATCTATAAAGCCAACACATTATTCTTACCCTTTTGCCCACACTTATACCCCATCAACCT
+CTACATACACTCACCCACATGAGTGTCTCTACATAAACACTACTATATAGTACTGGTCCA 
+AAGGTACAAGTTGAGGGAG
+
+>AT5G38430.1_i1_7_5UTR 
+GCTTTTTGCCTCTTACGGTTCTCACTATATAAAGATGACAAAACCAATAGAAAAACAATT 
+AAG
+
+>AT1G31820.1_i1_14_5UTR 
+GTTTGTACTTCTTTACCTCTCGTAAATGTTTAGACTTTCGTATAAGGATCCAAGAATTTA
+TCTGATTGTTTTTTTTTCTTTGTTTCTTTGTGTTGATTCAG
+
+>AT3G12670.1_i1_18_5UTR 
+GTAGAATTCGTAAATTTCTTCTGCTCACTTTATTGTTTCGACTCATACCCGATAATCTCT
+TCTATGTTTGGTAGAGATATCTTCTCAAAGTCTTATCTTTCCTTACCGTGTTCTGTGTTT 
+TTTGATGATTTAG
+
+>AT1G26930.1_i1_19_5UTR 
+GTATAATATGAGAGATAGACAAATGTAAAGAAAAACACAGAGAGAAAATTAGTTTAATTA
+ATCTCTCAAATATATACAAATATTAAAACTTCTTCTTCTTCAATTACAATTCTCATTCTT
+TTTTTCTTGTTCTTATATTGTAGTTGCAAGAAAGTTAAAAGATTTTGACTTTTCTTGTTT 
+CAG
+[gottschalk.w@c0659 seq.files]$ #the tr '\n' '@' < intron_IME_data.fasta turns the lines of the fasta file '@' into new lines 'n/'
+[gottschalk.w@c0659 seq.files]$ #sed 's/>/#>/g' puts a # in front of every > 
+[gottschalk.w@c0659 seq.files]$ #tr '#' '\n' turns every #just made in front of > into a new line 'n/'
+[gottschalk.w@c0659 seq.files]$ #grep "i1_.*5UTR" looks through the whole file for instances of the part in ""
+[gottschalk.w@c0659 seq.files]$ #sort -nk 3 -t "_" sorts the numerically -n in the third row k 3
+[gottschalk.w@c0659 seq.files]$ #head -n5 shows the first 5 lines
+[gottschalk.w@c0659 seq.files]$ #tr '@' '\n' converst @ into new lines again

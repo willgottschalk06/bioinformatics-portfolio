@@ -1,0 +1,264 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\mftha> wsl
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 1
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls
+ -1.14-windows.xml
+ '3D Objects'
+ AppData
+ 'Application Data'
+ Contacts
+ Cookies
+ Desktop
+ Documents
+ Downloads
+ 
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 2
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd /mnt/c/Users/mftha/Desktop/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd ../Documents/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ #absolute and relative paths
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ #task 3
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ cd /
+w_gottschalk@DESKTOP-0JRPUN0:/$ pwd
+/
+w_gottschalk@DESKTOP-0JRPUN0:/$ cd ~
+w_gottschalk@DESKTOP-0JRPUN0:~$ pwd
+/home/w_gottschalk
+w_gottschalk@DESKTOP-0JRPUN0:~$ cd /
+w_gottschalk@DESKTOP-0JRPUN0:/$ pwd
+/
+w_gottschalk@DESKTOP-0JRPUN0:/$ cd
+w_gottschalk@DESKTOP-0JRPUN0:~$ pwd
+/home/w_gottschalk
+w_gottschalk@DESKTOP-0JRPUN0:~$ #cd and cd ~ working the same
+
+w_gottschalk@DESKTOP-0JRPUN0:~$ #task 4
+w_gottschalk@DESKTOP-0JRPUN0:~$ cd /mnt/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt$ ls -l
+total 0
+drwxrwxrwx 1 w_gottschalk w_gottschalk 4096 Sep 17 14:50 c
+drwxrwxrwt 2 root         root           60 Sep 17 15:43 wsl
+drwxrwxrwt 7 root         root          300 Sep 17 15:49 wslg
+w_gottschalk@DESKTOP-0JRPUN0:/mnt$ ls -l -t -r
+total 0
+drwxrwxrwx 1 w_gottschalk w_gottschalk 4096 Sep 17 14:50 c
+drwxrwxrwt 2 root         root           60 Sep 17 15:43 wsl
+drwxrwxrwt 7 root         root          300 Sep 17 15:49 wslg
+w_gottschalk@DESKTOP-0JRPUN0:/mnt$ ls -lh
+total 0
+drwxrwxrwx 1 w_gottschalk w_gottschalk 4.0K Sep 17 14:50 c
+drwxrwxrwt 2 root         root           60 Sep 17 15:43 wsl
+drwxrwxrwt 7 root         root          300 Sep 17 15:49 wslg
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt$ #task 5
+w_gottschalk@DESKTOP-0JRPUN0:/mnt$ cd c/Users/mftha/Desktop/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ mkdir unix
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
+ Google.lnk             desktop.ini       Spotify.lnk        unix
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd unix/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Temp1
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cd /mnt/c/Users/mftha/Desktop/unix/Temp1/
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp1$ #task 6
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp1$ cd /mnt/c/Users/mftha/Downloads/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Downloads$  ls
+ what-muscles-do-push-ups-work.jpg
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Downloads$ rm what-muscles-do-push-ups-work.jpg
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Downloads$
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\mftha> wsl
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 7
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd /mnt/c/Users/mftha/Desktop/unix/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #Using tab complete to change to unix directory
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #task 8
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cd Temp/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ touch fat fit feet
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ ls f?t
+fat  fit
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ ls f??t
+feet
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ #using ? as a wild card character to ls the different files with f and t
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ #task 9
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ cd ..
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Temp
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ mkdir Temp3
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Temp  Temp3
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #making a Temp3 file
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #making Temp3 directory
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ mv Temp3 Temp/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #moving Temp3 to Temp directory
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls Temp/
+Temp3  earth.txt  fat  feet  fit  heaven.txt  rags
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #showing Temp3 has been moved
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #task 10
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cd ../..
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #going to home directory for windows
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls Desktop
+ Google.lnk                     'Out of the Park Baseball 23.url'   'Spelunky 2.url'   Temp3                  unix
+ 'Hollow Knight Silksong.url'   'Slay the Spire 2.url'              Spelunky.url       'Zoom Workplace.lnk'
+ 'Into the Breach.url'          SpeedRunners.url                    Spotify.lnk        desktop.ini
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls Desktop/
+ Google.lnk                       Temp3                  unix
+ 'Zoom Workplace.lnk'       	  desktop.ini
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #Task 11
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #removing files form unix directory
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd Desktop/unix/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Temp  owl.fa
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #changing to and looking at unix content
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ rm -i Temp
+rm: cannot remove 'Temp': Is a directory
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ rm -i owl.fa
+rm: remove regular empty file 'owl.fa'? y
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ rmdir Temp
+rmdir: failed to remove 'Temp': Directory not empty
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Temp
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #removed all non-directories
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #task 12
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Storage  Storage2
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cp Storage Storage2
+cp: -r not specified; omitting directory 'Storage'
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
+Storage  Storage2
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls Storage Storage2
+Storage:
+file1  file2  file3
+
+Storage2:
+file1  file2  file3
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #using cp without the -R
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 13
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd Desktop/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ mkdir Data
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ #making Data directory on Desktop
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ mv At_proteins.fasta Data/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ #moving file to Data directory
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd Data/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ ls
+At_proteins.fasta
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ #showing moved file in Data directory
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ #task 14 turning rm into rm -i w/ alias
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ alias rm='rm -i'
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ ls
+At_proteins.fasta
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ ls
+At_proteins.fasta
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Data$ cd ..
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
+ At_genes.gff   Data   Google.lnk   Spotify.lnk   Temp3   'Zoom Workplace.lnk'   desktop.ini   unix
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ rm At_genes.gff
+rm: remove regular file 'At_genes.gff'? n
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ #ls alias does not transfer to new window but rm alias works
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ #task 15 creating alias for ls and rm
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
+ At_genes.gff   Data   Google.lnk   Spotify.lnk   Temp3   'Zoom Workplace.lnk'   desktop.ini   unix
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd
+w_gottschalk@DESKTOP-0JRPUN0:~$ nano profile
+w_gottschalk@DESKTOP-0JRPUN0:~$ #added shortcuts
+w_gottschalk@DESKTOP-0JRPUN0:~$ less profile
+w_gottschalk@DESKTOP-0JRPUN0:~$ #looking at profile and seeing shortcuts added
+
+w_gottschalk@DESKTOP-0JRPUN0:~$ #task 16 source command
+w_gottschalk@DESKTOP-0JRPUN0:~$ #the following was done in a seperate tab
+PS C:\Users\mftha> wsl
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd ~
+w_gottschalk@DESKTOP-0JRPUN0:~$ source profile #adding shortcuts to terminal
+w_gottschalk@DESKTOP-0JRPUN0:~$ cd /mnt/c/Users/mftha/Desktop/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls #showing 'ls -p' alias
+ At_genes.gff   Data/   Google.lnk   Spotify.lnk   Temp3/  'Zoom Workplace.lnk'   desktop.ini   unix/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ touch Temp
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ rm Temp #showing 'rm -i' alias
+rm: remove regular empty file 'Temp'? y
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls #showing removed file
+ At_genes.gff   Data/   Google.lnk   Spotify.lnk   Temp3/  'Zoom Workplace.lnk'   desktop.ini   unix/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$
+
+w_gottschalk@DESKTOP-0JRPUN0:~$ #task 17
+w_gottschalk@DESKTOP-0JRPUN0:~$ pwd
+/home/w_gottschalk
+w_gottschalk@DESKTOP-0JRPUN0:~$ ls -a #showing all hidden files
+.   .bash_history  .bashrc  .config     .lesshst  .motd_shown  .wget-hsts  file2  profile
+..  .bash_logout   .cache   .landscape  .local    .profile     file1       file3  profile_gottschalk
+w_gottschalk@DESKTOP-0JRPUN0:~$ less profile #looking at profile files
+w_gottschalk@DESKTOP-0JRPUN0:~$ less profile_gottschalk
+
+w_gottschalk@DESKTOP-0JRPUN0:~$ #task 18
+w_gottschalk@DESKTOP-0JRPUN0:~$ #the following was done in new terminal
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd Desktop/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
+ At_genes.gff   Data   Google.lnk   Spotify.lnk   Temp3   'Zoom Workplace.lnk'   desktop.ini   unix
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ source ~/.profile
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
+ At_genes.gff   Data   Google.lnk   Spotify.lnk   Temp3   'Zoom Workplace.lnk'   desktop.ini   unix
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ source ~/profile
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
+ At_genes.gff   Data/   Google.lnk   Spotify.lnk   Temp3/  'Zoom Workplace.lnk'   desktop.ini   unix/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ #profile shortcuts added
+
+ #task 19
+w_gottschalk@DESKTOP-0JRPUN0:~$ cd /mnt/c/Users/mftha/Desktop/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ mkdir Code
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd Code/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ nano hello.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ #creating nano file in Code directory
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ #task 20
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ bash hello.sh
+Hello World
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ ls -l
+total 0
+-rwxrwxrwx 1 w_gottschalk w_gottschalk 47 Sep 20 12:19 hello.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ chmod u+x hello.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ ls -l
+total 0
+-rwxrwxrwx 1 w_gottschalk w_gottschalk 47 Sep 20 12:19 hello.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ bash hello.sh
+Hello World
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ #it worked both times
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ #task 21
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ #adding ./ in front of file name
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ ./hello.sh
+Hello World
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ #task 22
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ cd ..
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd Code/
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/Code$ nano cleanup.sh
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ #task23
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ nano cleanup.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ less cleanup.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ ls #showing some files before running bash
+ 01_UNIX_HPC.txt                             'Organic Chem II Lab 2.pdf'
+ 01_in_class_exer.txt                        'Organic Chemistry II Lab 1.pdf'
+ 2024.song.albums.to.listen.txt              'Orgo II Lab 5.pdf'
+ 'Annotated Bibliography 1.docx'             'Orgo II Lab 6.pdf'
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ mkdir -p Text PDF #making directory to put files in
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ bash cleanup.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ ls #showing PDF and Text files created 
+ 'Annotated Bibliography 1.docx'             'Physics Lab 1.docx'
+ 'Genetics Cloning Lab.docx'                 Text
+ PDF                                         desktop.ini
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$

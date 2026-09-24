@@ -1,0 +1,163 @@
+Windows PowerShell
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Try the new cross-platform PowerShell https://aka.ms/pscore6
+
+PS C:\Users\mftha> ssh gottschalk.w@login.explorer.northeastern.edu
+gottschalk.w@login.explorer.northeastern.edu's password:
+Last login: Tue Sep 22 16:42:09 2026 from 10.110.57.107
+    _______  __ ____  __    ____  ____  __________
+   / ____/ |/ // __ \/ /   / __ \/ __ \/ ____/ __ \
+  / __/  |   // /_/ / /   / / / / /_/ / __/ / /_/ /
+ / /___ /   |/ ____/ /___/ /_/ / _, _/ /___/ _, _/
+/_____//_/|_/_/   /_____/\____/_/ |_/_____/_/ |_|
+
++-----------------------------------------------------------+
+| You're now connected to the Explorer cluster. Visit our   |
+| website http://rc.northeastern.edu/support for links to   |
+| our service catalog, documentation, training, and consul- |
+| tations. You can also email us at rchelp@northeastern.edu |
+| to generate a help ticket.                                |
+|                                                           |
+| The Research Computing Team                               |
++-----------------------------------------------------------+
+
+The Research Computing team is thrilled to share that a new, state-of-the-art HPC cluster is coming soon to the Northeastern research computing community. All Northeastern faculty and PIs are eligible to submit a proposal, especially those who already use GPUs on the Explorer and Discovery HPC clusters.
+
+If you are a student or researcher who is a current Explorer HPC cluster user, we highly encourage you to reach out to your account sponsor (faculty or PI) to make a submission.
+
+The application process is here: https://forms.gle/eTPsdQZN25efoJ3g6
+If you have questions or feedback, please email d.tiwari@northeastern.edu.
+
+[gottschalk.w@explorer-01 ~]$ cd /courses/BIOL2406.202710/
+[gottschalk.w@explorer-01 BIOL2406.202710]$ ls
+data  misc  shared  staff  students
+[gottschalk.w@explorer-01 BIOL2406.202710]$ cd misc/
+[gottschalk.w@explorer-01 misc]$ ls
+grep_exercise.txt  perm_example.txt
+[gottschalk.w@explorer-01 misc]$ ls -l
+total 2
+-rw-r--r-- 1 jhenzy users                  189 Sep 24 10:07 grep_exercise.txt
+-rw-r--r-- 1 jhenzy BIOL2406.202710-staff 1056 Sep 24 10:22 perm_example.txt
+[gottschalk.w@explorer-01 misc]$ mv perm_example.txt ~
+mv: cannot remove 'perm_example.txt': Permission denied
+[gottschalk.w@explorer-01 misc]$ cp perm_example.txt ~
+[gottschalk.w@explorer-01 misc]$ cd ~
+[gottschalk.w@explorer-01 ~]$ ls
+ bioinformatics-portfolio   FstatsNancycats.R   inclass.work   ondemand           R                     'R Practice'
+ cichlid_data               HWEHW.R             Nancycats      perm_example.txt  'R Learning Practice'   seq.files
+[gottschalk.w@explorer-01 ~]$ cd /courses/BIOL2406.202710/
+[gottschalk.w@explorer-01 BIOL2406.202710]$ cd misc/
+[gottschalk.w@explorer-01 misc]$ ls-l
+-bash: ls-l: command not found
+[gottschalk.w@explorer-01 misc]$ ls -l
+total 2
+-rw-r--r-- 1 jhenzy users                  189 Sep 24 10:07 grep_exercise.txt
+-rw-rw-r-- 1 jhenzy BIOL2406.202710-staff 1056 Sep 24 10:22 perm_example.txt
+[gottschalk.w@explorer-01 misc]$ mv perm_example.txt ~
+mv: cannot remove 'perm_example.txt': Permission denied
+[gottschalk.w@explorer-01 misc]$ mv perm_example.txt ~
+mv: cannot remove 'perm_example.txt': Permission denied
+[gottschalk.w@explorer-01 misc]$ cd ..
+[gottschalk.w@explorer-01 BIOL2406.202710]$ cd students/gottschalk.w/
+[gottschalk.w@explorer-01 gottschalk.w]$ ls -l
+total 0
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 10 12:36 class_work
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 22 16:22 fastq_files
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 21 13:18 inclass.work
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 23 14:57 seq.files
+[gottschalk.w@explorer-01 gottschalk.w]$ cd class_work/
+[gottschalk.w@explorer-01 class_work]$ ls
+[gottschalk.w@explorer-01 class_work]$ cd ..
+[gottschalk.w@explorer-01 gottschalk.w]$ ls -l
+total 0
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 10 12:36 class_work
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 22 16:22 fastq_files
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 21 13:18 inclass.work
+drwxr-sr-x 2 gottschalk.w BIOL2406.202710-staff 4096 Sep 23 14:57 seq.files
+[gottschalk.w@explorer-01 gottschalk.w]$ cd class_work/
+[gottschalk.w@explorer-01 class_work]$ ls
+[gottschalk.w@explorer-01 class_work]$ cd ../inclass.work/
+[gottschalk.w@explorer-01 inclass.work]$ ls
+error_10490587.txt  output_10490587.txt  WG2_AA_names  WG_AA_names  WG_batch_trans.sh  WG_DNA_names  WG_trans.sh
+[gottschalk.w@explorer-01 inclass.work]$ ls -l
+total 3
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff  33 Sep 21 13:18 error_10490587.txt
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff   0 Sep 21 13:18 output_10490587.txt
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff 108 Sep 21 13:18 WG2_AA_names
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff 108 Sep 21 13:03 WG_AA_names
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff 347 Sep 21 13:17 WG_batch_trans.sh
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff 198 Sep 21 12:47 WG_DNA_names
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff 310 Sep 21 13:02 WG_trans.sh
+[gottschalk.w@explorer-01 inclass.work]$ nano WG_AA_names
+[gottschalk.w@explorer-01 inclass.work]$ cd ~
+[gottschalk.w@explorer-01 ~]$ ls
+ bioinformatics-portfolio   FstatsNancycats.R   inclass.work   ondemand           R                     'R Practice'
+ cichlid_data               HWEHW.R             Nancycats      perm_example.txt  'R Learning Practice'   seq.files
+[gottschalk.w@explorer-01 ~]$ cd bioinformatics-portfolio/
+[gottschalk.w@explorer-01 bioinformatics-portfolio]$ ls
+README.md
+[gottschalk.w@explorer-01 bioinformatics-portfolio]$ ls -l
+total 1
+-rw-r--r-- 1 gottschalk.w users 609 Sep 10 13:17 README.md
+[gottschalk.w@explorer-01 bioinformatics-portfolio]$ cd ..
+[gottschalk.w@explorer-01 ~]$ srun --pty /bin/bash
+srun: job 10581870 queued and waiting for resources
+srun: job 10581870 has been allocated resources
+[gottschalk.w@d0142 ~]$ cp -r bioinformatics-portfolio /courses/BIOL2406.202710/students/gottschalk.w/
+[gottschalk.w@d0142 ~]$ cd /courses/BIOL2406.202710/students/gottschalk.w/
+[gottschalk.w@d0142 gottschalk.w]$ ls
+bioinformatics-portfolio  class_work  fastq_files  inclass.work  seq.files
+[gottschalk.w@d0142 gottschalk.w]$ cd inclass.work/
+[gottschalk.w@d0142 inclass.work]$ ls
+error_10490587.txt  output_10490587.txt  WG2_AA_names  WG_AA_names  WG_batch_trans.sh  WG_DNA_names  WG_trans.sh
+[gottschalk.w@d0142 inclass.work]$ cd /courses/BIOL2406.202710/misc/
+[gottschalk.w@d0142 misc]$ ls
+grep_exercise.txt  perm_example.txt
+[gottschalk.w@d0142 misc]$ cp grep_exercise.txt /courses/BIOL2406.202710/students/gottschalk.w/inclass.work/
+[gottschalk.w@d0142 misc]$ cd /courses/BIOL2406.202710/students/gottschalk.w/inclass.work/
+[gottschalk.w@d0142 inclass.work]$ ls
+error_10490587.txt  grep_exercise.txt  output_10490587.txt  WG2_AA_names  WG_AA_names  WG_batch_trans.sh  WG_DNA_names  WG_trans.sh
+[gottschalk.w@d0142 inclass.work]$ grep ">" grep_exercise.txt
+>seq1_wildtype
+>seq2_mutant
+>seq3_wildtype
+>seq4_control
+[gottschalk.w@d0142 inclass.work]$ grep -c ">" grep_exercise.txt
+4
+[gottschalk.w@d0142 inclass.work]$ grep "GAATTC" grep_exercise.txt
+ATGGCTAGCTAGGGATCCGAATTCGCGCTAGC
+ATGCCCGGGAATTCGATCGATCGGGCCATGCA
+NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[gottschalk.w@d0142 inclass.work]$ nano grep_exercise.txt
+[gottschalk.w@d0142 inclass.work]$ nano grep_exercise.txt
+[gottschalk.w@d0142 inclass.work]$ grep "GGATCC" grep_exercise.txt
+ATGGCTAGCTAGGGATCCGAATTCGCGCTAGC
+ATGGCTAGCTAGGGATCCTAATTCGCGCTAGC
+NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[gottschalk.w@d0142 inclass.work]$ grep -v "GAATTC" grep_exercise.txt
+>seq1_wildtype
+>seq2_mutant
+ATGGCTAGCTAGGGATCCTAATTCGCGCTAGC
+>seq3_wildtype
+>seq4_control
+[gottschalk.w@d0142 inclass.work]$ grep "N" grep_exercise.txt
+NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[gottschalk.w@d0142 inclass.work]$ grep -n "N" grep_exercise.txt
+8:NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[gottschalk.w@d0142 inclass.work]$ grep ">.*mutant" grep_exercise.txt
+>seq2_mutant
+[gottschalk.w@d0142 inclass.work]$ grep -c ">.*wildtype" grep_exercise.txt
+2
+[gottschalk.w@d0142 inclass.work]$ grep -c "seq" grep_exercise.txt
+4
+[gottschalk.w@d0142 inclass.work]$ grep -n "N" grep_exercise.txt
+8:NNNATGGCTAGCTAGGATCCGAATTCGCGATG
+[gottschalk.w@d0142 inclass.work]$ grep -o "G" grep_exercise.txt  | wc -l
+38
+[gottschalk.w@d0142 inclass.work]$ cd ..
+[gottschalk.w@d0142 gottschalk.w]$ ls
+bioinformatics-portfolio  class_work  fastq_files  inclass.work  seq.files
+[gottschalk.w@d0142 gottschalk.w]$ cd bioinformatics-portfolio/
+[gottschalk.w@d0142 bioinformatics-portfolio]$ ls
+README.md
