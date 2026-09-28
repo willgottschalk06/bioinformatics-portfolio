@@ -1,0 +1,110 @@
+PS C:\Users\mftha> wsl
+Welcome to Ubuntu 26.04.1 LTS (GNU/Linux 6.18.33.2-microsoft-standard-WSL2 x86_64)
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls /usr/bin/*.sh
+/usr/bin/gettext.sh
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ /usr/bin/gettext.sh  /usr/bin/rescan-scsi-bus.sh
+GNU gettext shell script function library version 0.23.2
+Usage: . gettext.sh
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #exercise 1
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #listing all files in /usr/bin that start with letter c using *
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls /usr/bin/c*
+/usr/bin/c++filt     /usr/bin/chown           /usr/bin/codepage  /usr/bin/conch3
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #listing all files in /usr/bin that contain an a using *a*
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls /usr/bin/*a*
+/usr/bin/aa-enabled                          /usr/bin/landscape-monitor
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #listing all files in /usr/bin that end in o using *o
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls /usr/bin/*o
+/usr/bin/captoinfo           /usr/bin/gnumkfifo          /usr/bin/lessecho  /usr/bin/sudo
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #listing all files in /usr/bin that have both a or c using *[ac]* the [] indicate the or
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls /usr/bin/*[ac]*
+/usr/bin/aa-enabled                          /usr/bin/journalctl
+
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #comparing outputs of echo *missing and ls *missing
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ echo *missing
+*missing
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #repeats *missing back to me
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls *.missing
+ls: cannot access '*.missing': No such file or directory
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #looks for a *.missing file to show me
+
+[gottschalk.w@c0585 gottschalk.w]$ #Exercise 2 opening fastq file from student directory using cat
+[gottschalk.w@c0619 gottschalk.w]$ cat fastq_files/SRR097977.fastq
+C:CCC::CCCCCCCC<8?6A:C28C<608'&&&,'$
+#above is the last line from that file
+[gottschalk.w@c0585 gottschalk.w]$ #going from home directory to show call files in fastq_files with cat and *
+[gottschalk.w@c0585 ~]$ #changing to home directory 
+[gottschalk.w@c0585 gottschalk.w]$ cd ~
+[gottschalk.w@c0585 ~]$ #going through all directories to fastq_files and showing all file contents
+[gottschalk.w@c0585 ~]$ cat /courses/BIOL2406.202710/students/gottschalk.w/fastq_files/*
+@SRR097977.1 209DTAAXX_Lenski2_1_7:8:3:710:178 length=36
+TATTCTGCCATAATGAAATTCGCCACTTGTTAGTGT
+
+ #Exercise 3 finding the three nucleotides following TTTTT in the file SRR097977.fastq
+[gottschalk.w@c0585 fastq_files]$ #using less and then / to find TTTTT
+[gottschalk.w@c0585 fastq_files]$ less SRR097977.fastq
+[gottschalk.w@c0585 fastq_files]$ #CAC follows the first instance of TTTTT
+
+[gottschalk.w@c0585 fastq_files]$ #Exercise 4
+[gottschalk.w@c0585 fastq_files]$ #deleting backup directory with all files
+[gottschalk.w@c0585 fastq_files]$ rm -r backup/
+[gottschalk.w@c0585 fastq_files]$ #creating a backup of each fastq file
+[gottschalk.w@c0585 fastq_files]$ ls
+Ppar_tinygenome.fna  Sea_cuke  SRR6805880.tiny.fastq  SRR6805881.tiny.fastq
+SRR097977.fastq	 SRR098026.fastq
+[gottschalk.w@c0585 fastq_files]$ cp SRR098026.fastq SRR098026-backup.fastq
+[gottschalk.w@c0585 fastq_files]$ cp SRR097977.fastq SRR097977-backup.fastq
+[gottschalk.w@c0585 fastq_files]$ #making new backup directory
+[gottschalk.w@c0585 fastq_files]$ mkdir backup
+[gottschalk.w@c0585 fastq_files]$ #moving backup files with wildcard
+[gottschalk.w@c0585 fastq_files]$ mv *-backup.fastq backup
+[gottschalk.w@c0585 fastq_files]$ cd backup/
+[gottschalk.w@c0585 backup]$ ls
+SRR098026-backup.fastq  SRR097977-backup.fastq
+[gottschalk.w@c0585 backup]$ #changing persmission to be write protected
+[gottschalk.w@c0585 backup]$ chmod -w *-backup.fastq
+[gottschalk.w@c0585 backup]$ ls -l
+total 414
+-r-xr-xr-x 1 gottschalk.w BIOL2406.202710-staff 211676 Sep 25 19:25 SRR098026-backup.fastq
+-r-xr-xr-x 1 gottschalk.w BIOL2406.202710-staff 211676 Sep 25 19:23 SRR097977-backup.fastq
+
+[gottschalk.w@c0619 fastq_files]$ #Exercise 5
+[gottschalk.w@c0619 fastq_files]$ #using grep -B1 to look for SNATNACCACTTCC in the SRR098026.fastq file
+[gottschalk.w@c0619 fastq_files]$ grep -B1 GNATNACCACTTCC SRR098026.fastq
+@SRR098026.245 HWUSI-EAS1599_1:2:1:2:801 length=35
+GNATNACCACTTCCAGTGCTGANNNNNNNGGGATG
+[gottschalk.w@c0619 fastq_files]$ #looking for AAGTT in both fastq files using grep -B1 and * for the files
+[gottschalk.w@c0619 fastq_files]$ grep -B1 AAGT *.fastq
+SRR097977.fastq-@SRR097977.10 209DTAAXX_Lenski2_1_7:8:3:734:620 length=36
+SRR097977.fastq:TGTTGGTAATATAGTTTCAAGTGTTACTATAACTGG
+
+[gottschalk.w@c0619 fastq_files]$ #Exercise 6
+[gottschalk.w@c0619 fastq_files]$ #finding how many sequences are in SRR098026.fastq  using wc -l
+[gottschalk.w@c0619 fastq_files]$ wc -l SRR098026.fastq
+996 SRR098026.fastq
+[gottschalk.w@c0619 fastq_files]$ #Divide the number above by 4 to get the number of sequences because each one has four lines
+
+[gottschalk.w@c0619 fastq_files]$ #Exercise 7
+[gottschalk.w@c0619 fastq_files]$ #printing the file prefix of all the .txt files in current directory, using basename to find filenames with .txt and using echo to say the name
+[gottschalk.w@c0619 fastq_files]$ for filename in *.txt; do name=$(basename "${filename}" .txt); echo "${name}"; done
+bad_reads
+
+[gottschalk.w@c0619 fastq_files]$ #Exercise 8
+[gottschalk.w@c0619 fastq_files]$ #removing _2021 from my .txt files, use the mv command to make all the .txt files I added _2021 to revert back
+[gottschalk.w@c0619 fastq_files]$ ls
+backup  bad_reads_2021.txt  Ppar_tinygenome.fna  Sea_cuke  SRR097977.fastq  SRR098026.fastq  SRR6805880.tiny.fastq  SRR6805881.tiny.fastq
+[gottschalk.w@c0619 fastq_files]$ for filename in *_2021.txt; do name=$(basename "${filename}" _2021.txt); mv "${filename}" "${name}.txt"; done
+[gottschalk.w@c0619 fastq_files]$ ls
+backup  bad_reads.txt  Ppar_tinygenome.fna  Sea_cuke  SRR097977.fastq  SRR098026.fastq  SRR6805880.tiny.fastq  SRR6805881.tiny.fastq
+
+[gottschalk.w@c0619 fastq_files]$ #Exercise 9
+[gottschalk.w@c0619 fastq_files]$ nano README.txt
+
+[gottschalk.w@c0619 fastq_files]$ #Exercise 10
+[gottschalk.w@c0619 fastq_files]$ #adding echo "script finished" after the grep command in my bad-reads-script.sh bash script and running it
+[gottschalk.w@c0619 fastq_files]$ nano bad-reads-script.sh
+[gottschalk.w@c0619 fastq_files]$ [gottschalk.w@c0619 fastq_files]$ #running the bash after the update
+[gottschalk.w@c0619 fastq_files]$ bash bad-reads-script.sh
+Script finished
+[gottschalk.w@c0619 fastq_files]$

@@ -4,7 +4,7 @@ Copyright (C) Microsoft Corporation. All rights reserved.
 Try the new cross-platform PowerShell https://aka.ms/pscore6
 
 PS C:\Users\mftha> wsl
-w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 1
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 1 going to home using ls command
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls
  -1.14-windows.xml
  '3D Objects'
@@ -16,12 +16,12 @@ w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls
  Documents
  Downloads
  
-w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 2
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 2 using first absolute and then relative paths to change directories
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd /mnt/c/Users/mftha/Desktop/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ cd ../Documents/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ #absolute and relative paths
 
-w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ #task 3
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ #task 3 using / and ~ commands with cd
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ cd /
 w_gottschalk@DESKTOP-0JRPUN0:/$ pwd
 /
@@ -36,7 +36,7 @@ w_gottschalk@DESKTOP-0JRPUN0:~$ pwd
 /home/w_gottschalk
 w_gottschalk@DESKTOP-0JRPUN0:~$ #cd and cd ~ working the same
 
-w_gottschalk@DESKTOP-0JRPUN0:~$ #task 4
+w_gottschalk@DESKTOP-0JRPUN0:~$ #task 4 using different ls command options
 w_gottschalk@DESKTOP-0JRPUN0:~$ cd /mnt/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt$ ls -l
 total 0
@@ -54,7 +54,7 @@ drwxrwxrwx 1 w_gottschalk w_gottschalk 4.0K Sep 17 14:50 c
 drwxrwxrwt 2 root         root           60 Sep 17 15:43 wsl
 drwxrwxrwt 7 root         root          300 Sep 17 15:49 wslg
 
-w_gottschalk@DESKTOP-0JRPUN0:/mnt$ #task 5
+w_gottschalk@DESKTOP-0JRPUN0:/mnt$ #task 5 creating and changing directories first with relative and then absolute paths
 w_gottschalk@DESKTOP-0JRPUN0:/mnt$ cd c/Users/mftha/Desktop/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ mkdir unix
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop$ ls
@@ -64,25 +64,21 @@ w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ ls
 Temp1
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cd /mnt/c/Users/mftha/Desktop/unix/Temp1/
 
-w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp1$ #task 6
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp1$ #task 6 using cd to navigate to downloads and then removing a file
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp1$ cd /mnt/c/Users/mftha/Downloads/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Downloads$  ls
  what-muscles-do-push-ups-work.jpg
+	#using rm <filename.jpg>
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Downloads$ rm what-muscles-do-push-ups-work.jpg
-w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Downloads$
-Windows PowerShell
-Copyright (C) Microsoft Corporation. All rights reserved.
 
-Try the new cross-platform PowerShell https://aka.ms/pscore6
-
-PS C:\Users\mftha> wsl
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #task 7
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ cd /mnt/c/Users/mftha/Desktop/unix/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #Using tab complete to change to unix directory
 
-w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #task 8
+w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #task 8 using touch to create three files
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cd Temp/
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ touch fat fit feet
+	#using * and ? as wildcards with ls
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ ls f?t
 fat  fit
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix/Temp$ ls f??t
@@ -108,12 +104,9 @@ w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ #task 10
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Desktop/unix$ cd ../..
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #going to home directory for windows
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls Desktop
- Google.lnk                     'Out of the Park Baseball 23.url'   'Spelunky 2.url'   Temp3                  unix
- 'Hollow Knight Silksong.url'   'Slay the Spire 2.url'              Spelunky.url       'Zoom Workplace.lnk'
- 'Into the Breach.url'          SpeedRunners.url                    Spotify.lnk        desktop.ini
+ Google.lnk                       Temp3                  unix
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ ls Desktop/
  Google.lnk                       Temp3                  unix
- 'Zoom Workplace.lnk'       	  desktop.ini
 
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #Task 11
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha$ #removing files form unix directory
@@ -252,13 +245,10 @@ w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ nano cleanup.sh
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ less cleanup.sh
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ ls #showing some files before running bash
  01_UNIX_HPC.txt                             'Organic Chem II Lab 2.pdf'
- 01_in_class_exer.txt                        'Organic Chemistry II Lab 1.pdf'
- 2024.song.albums.to.listen.txt              'Orgo II Lab 5.pdf'
- 'Annotated Bibliography 1.docx'             'Orgo II Lab 6.pdf'
+ 'Annotated Bibliography 1.docx'            
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ mkdir -p Text PDF #making directory to put files in
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ bash cleanup.sh
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$ ls #showing PDF and Text files created 
- 'Annotated Bibliography 1.docx'             'Physics Lab 1.docx'
- 'Genetics Cloning Lab.docx'                 Text
+ 'Annotated Bibliography 1.docx'             Text
  PDF                                         desktop.ini
 w_gottschalk@DESKTOP-0JRPUN0:/mnt/c/Users/mftha/Documents$
