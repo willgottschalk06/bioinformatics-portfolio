@@ -1,0 +1,69 @@
+	#using head to view the beginning of the reads example files
+[gottschalk.w@c0659 Genomic_data]$ head reads_1.fq
+@r1
+TGAATGCGAACTCCGGGACGCTCAGTAATGTGACGATAGCTGAAAACTGTACGATAAACNGTACGCTGAGGGCAGAAAAAATCGTCGGGGACATTNTAAAGGCGGCGAGCGCGGCTTTTCCG
+
+	#loading anaconda module
+[gottschalk.w@c0659 Genomic_data]$ module load anaconda3/2024.06
+
+	#loading emboss_env from shared folder
+[gottschalk.w@c0659 Genomic_data]$ source activate /courses/BIOL2406.202710/shared/emboss_env
+
+	#using infoseq command on Lambda genome
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ infoseq Lambda_phage_genome
+Display basic information about sequences
+USA                      Database  Name           Accession      Type Length %GC    Organism            Description
+fasta::Lambda_phage_genome:NC_001416.1 -              NC_001416.1    -              N    48502  49.86                      Enterobacteria phage lambda, complete genome
+
+	#loading bowtie2 to begin indexing genome
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 emboss_env]$ module load bowtie2/
+
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 emboss_env]$ bowtie2-build /courses/BIOL2406.202710/students/gottschalk.w/Genomic_data/Lambda_phage_genome.fna lambda_virus
+Settings:
+  Output files: "lambda_virus.*.bt2"
+
+	#moving to directory with lambda genome
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 emboss_env]$ cd /courses/BIOL2406.202710/students/gottschalk.w/Genomic_data
+
+	#using bowtie2 command to index lambda genome
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ bowtie2 Lambda_phage_genome.fna lambda_virus
+No index, query, or output file specified!
+
+	#using bowtie to create sam files for the lambda_virus reads in gotten from the example to see alignment
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ bowtie2 -x lambda_virus -U reads_1.fq -S eg1.sam
+94.04% overall alignment rate
+
+	#confirming the .sam file was made
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ ls
+eg1.sam                               Homo_sapiens.GRCh38.115.gtf            
+
+	#viewing the sam file
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ head eg1.sam
+@HD     VN:1.5  SO:unsorted     GO:query
+
+	#making a sam file for the second read
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ bowtie2 -x lambda_virus -1 reads_1.fq -2 reads_2.fq -S eg2.sam
+94.97% overall alignment rate
+	
+	#loading samtools and bcftools
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ module load samtools/1.21
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ module load bcftools/1.21
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ module list
+Currently Loaded Modulefiles:
+ 1) explorer/1.0   2) anaconda3/2024.06   3) bowtie2/2.5.4   4) samtools/1.21   5) bcftools/1.21
+
+	#viewing the sam file
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ less -S eg2.sam
+	
+	#converting the sam file to bam format with sam tools
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ samtools view -bS eg2.sam > eg2.bam
+	#using samtools to make bam file sorted bam file
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ samtools sort eg2.bam -o eg2.sorted.bam
+
+	#Making a varient file using bcftools
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ bcftools mpileup -f Lambda_phage_genome.fna eg2.sorted.bam | bcftools view -Ov - > eg2.raw.bcf
+[mpileup] maximum number of reads per input file set to -d 250
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ bcftools view eg2.raw.bcf > variants.txt
+
+	#viewing file made
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@c0659 Genomic_data]$ less eg2.raw.bcf

@@ -1,0 +1,115 @@
+(base) [gottschalk.w@explorer-02 ~]$ srun --pty /bin/bash
+srun: job 11191725 queued and waiting for resources
+srun: job 11191725 has been allocated resources
+
+	#going to Sea cuke directory
+(base) [gottschalk.w@c0612 gottschalk.w]$ cd Sea_cuke/
+(base) [gottschalk.w@c0612 Sea_cuke]$ ls
+Ppar_tinygenome.fna.gz       SRR6805881.tiny.fastq        SRR6805883.tiny.fastq.gz
+
+	#loading fastqc module to check read qualities
+(base) [gottschalk.w@c0612 Sea_cuke]$ module load fastqc/0.12.1
+Loading fastqc/0.12.1
+  Loading requirement: OpenJDK/22.0.2 perl/5.40.0
+
+(base) [gottschalk.w@c0612 Sea_cuke]$ fastqc SRR6805880.tiny.fastq
+Analysis complete for SRR6805880.tiny.fastq
+
+	#running fastqc to check read quality for all read files by making html files
+(base) [gottschalk.w@c0612 Sea_cuke]$ fastqc SRR680588*
+Analysis complete for SRR6805885.tiny.trim.fastq
+
+(base) [gottschalk.w@c0612 Sea_cuke]$ ls
+Ppar_tinygenome.fna.gz            SRR6805881.tiny.trim_fastqc.html  SRR6805884.tiny.fastq
+
+	#activating the conda environment to use cutadapt
+(base) [gottschalk.w@c0612 Sea_cuke]$ conda activate qiime2-amplicon-2025.7
+	
+	#using cutadapt to trim TGCAG in new 'trimmed' fastq file  
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ cutadapt -g TGCAG SRR6805880.tiny.fastq -o SRR6805880.tiny_trimmed.fastq
+length  count   expect  max.err error counts
+5       1000    1.0     0       1000
+
+	#running a simple loop to trim TGCAG left over from adapters for all tiny.fastq files 
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ for filename in *.tiny.fastq; do base=$(basename $filename.tiny.fastq); echo ${base}; cutadapt -g TGCAG ${base}.tiny.fastq -o ${base}.tiny_trimmed.fastq; done SRR6805880
+Overview of removed sequences
+length  count   expect  max.err error counts
+5       1000    1.0     0       1000
+	
+	#showing all trimmed files created from loop using ls command
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ ls *trimmed*
+SRR6805880.tiny_trimmed.fastq  SRR6805882.tiny_trimmed.fastq  SRR6805884.tiny_trimmed.fastq
+
+	#using less to view the files without the nucleotides left from the adapters
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ less SRR6805880.tiny_trimmed.fastq
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ less SRR6805881.tiny_trimmed.fastq
+
+	#loading bowtie2 module
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ module load bowtie2/2.5.4
+	
+	#using bowtie2 to index the genome for the sea cukes
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ bowtie2-build Ppar_tinygenome.fna Ppar_tinygenome
+Renaming Ppar_tinygenome.rev.2.bt2.tmp to Ppar_tinygenome.rev.2.bt2
+	
+	#using ls to view new .bt2 files created from the indexing
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ ls
+Ppar_tinygenome.1.bt2            
+
+	#making index directory to store the .bt2 files in
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ mkdir index
+
+	#moving .bt2 files to new index directory
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ mv *.bt2 index
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ mv *.sh bash_scripts/
+
+	#using a for loop to map the reads against the index created making sam files
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ for filename in *.tiny_trimmed.fastq
+> do
+>
+>   base=$(basename $filename .tiny_trimmed.fastq)
+>   echo ${base}
+>
+>   bowtie2 -x index/Ppar_tinygenome -U ${base}.tiny_trimmed.fastq -S ${base}.sam
+>
+> done
+23.40% overall alignment rate
+
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ ls
+SRR6805884.sam
+	#loading samtools and then converting sam files to bam files 
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ module load samtools
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ for filename in *.sam
+> do
+>
+>   base=$(basename $filename .sam)
+>   echo ${base}
+>
+>   samtools view -bhS ${base}.sam | samtools sort -o ${base}.bam
+>
+> done
+SRR6805880
+
+	#deactivating conda to then use angsd later
+(qiime2-amplicon-2025.7) [gottschalk.w@c0612 Sea_cuke]$ conda deactivate
+
+	#using ls and > to connect all .bam files together
+(base) [gottschalk.w@c0612 Sea_cuke]$ ls *.bam > bam.filelist
+(base) [gottschalk.w@c0612 Sea_cuke]$ cat bam.filelist
+SRR6805880.bam
+
+	#activating the angsd environment
+(base) [gottschalk.w@c0612 BIOL2406.202710]$ cd shared/
+(base) [gottschalk.w@c0612 shared]$ conda activate angsd_env/
+(/courses/BIOL2406.202710/shared/angsd_env) [gottschalk.w@c0612 shared]$ cd /courses/BIOL2406.202710/students/gottschalk.w/Sea_cuke/
+
+	#running the angsd command on the bam files to create the genotype likelihood files 
+(/courses/BIOL2406.202710/shared/angsd_env) [gottschalk.w@c0612 Sea_cuke]$ angsd -bam bam.filelist -GL 1 -out genotype_likelihoods -doMaf 2 -SNP_pval 1e-2 -doMajorMinor 1
+        [ALL done] walltime used =  1.00 sec
+(/courses/BIOL2406.202710/shared/angsd_env) [gottschalk.w@c0612 Sea_cuke]$ ls
+genotype_likelihoods.arg          
+genotype_likelihoods.mafs.gz
+
+#inclass exercise question answers
+#1, The read alignments are all lower with the untrimmed compared to the trimmed being around 0.5% different between the two.
+#2, The 70 bp reads that were made mapped worse than the other reads
+#3, Changing the p value to 1e-1 got 54 sites, chaning to 1e-2 got 9 sites and 1e-3 got 0 sites.

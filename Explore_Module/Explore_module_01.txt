@@ -1,0 +1,109 @@
+#requesting a compute node
+[gottschalk.w@explorer-02 ~]$ srun --pty /bin/bash
+srun: job 10739111 queued and waiting for resources
+srun: job 10739111 has been allocated resources
+
+#going to student directory 
+[gottschalk.w@d0126 ~]$ cd /courses/BIOL2406.202710/students/gottschalk.w/
+
+#using wget command to download genome from the ncbi database
+[gottschalk.w@d0126 gottschalk.w]$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/008/685/GCF_000008685.2_ASM868v2/GCF_000008685.2_ASM868v2_genomic.fna.gz
+--2026-10-01 12:33:12--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/008/685/GCF_000008685.2_ASM868v2/GCF_000008685.2_ASM868v2_genomic.fna.gz
+
+#uisng to ls to see the file and confirm download
+[gottschalk.w@d0126 gottschalk.w]$ ls
+fastq_files               GCF_000008685.2_ASM868v2_genomic.fna.gz  seq.files
+
+#using wget command to download genome from the ncbi database
+[gottschalk.w@d0126 gottschalk.w]$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/985/GCF_000002985.6_WBcel235/GCF_000002985.6_WBcel235_genomic.fna.gz
+--2026-10-01 12:33:57--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/985/GCF_000002985.6_WBcel235/GCF_000002985.6_WBcel235_genomic.fna.gz
+
+#uisng to ls to see the file and confirm download
+[gottschalk.w@d0126 gottschalk.w]$ ls
+GCF_000002985.6_WBcel235_genomic.fna.gz           GCF_000008685.2_ASM868v2_genomic.fna.gz
+
+#using wget command to download genome from the ncbi database
+[gottschalk.w@d0126 gottschalk.w]$ wget https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/840/245/GCF_000840245.1_ViralProj14204/GCF_000840245.1_ViralProj14204_genomic.fna.gz
+--2026-10-01 12:34:40--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/840/245/GCF_000840245.1_ViralProj14204/GCF_000840245.1_ViralProj14204_genomic.fna.gz
+
+#uisng to ls to see the file and confirm download
+[gottschalk.w@d0126 gottschalk.w]$ ls
+GCF_000840245.1_ViralProj14204_genomic.fna.gz
+
+#moving genomes to fastq directory
+[gottschalk.w@d0126 gottschalk.w]$ mv *.fna.gz fastq_files/
+[gottschalk.w@d0126 gottschalk.w]$ cd fastq_files/
+
+#confirming genome data was moved
+[gottschalk.w@d0126 fastq_files]$ ls
+GCF_000840245.1_ViralProj14204_genomic.fna.gz  GCF_000002985.6_WBcel235_genomic.fna.gz  GCF_000008685.2_ASM868v2_genomic.fna.gz
+
+#using wget command to download genome data
+[gottschalk.w@d0126 fastq_files]$ wget https://ftp.ebi.ac.uk/pub/ensemblorganisms/GCA/000/001/405/29/ensembl/2026_04/genome/softmasked.fa.bgz.gzi
+--2026-10-01 12:41:26--  https://ftp.ebi.ac.uk/pub/ensemblorganisms/GCA/000/001/405/29/ensembl/2026_04/genome/softmasked.fa.bgz.gzi
+
+#moving the genomes to my student directory
+[gottschalk.w@d0126 fastq_files]$ mv *.fna.gz /courses/BIOL2406.202710/students/gottschalk.w/
+
+#copying the Sea_cuke directory and moving it to my student directory
+[gottschalk.w@d0126 fastq_files]$ cp -r Sea_cuke /courses/BIOL2406.202710/students/gottschalk.w/
+[gottschalk.w@d0126 fastq_files]$ cd ..
+[gottschalk.w@d0126 gottschalk.w]$ ls
+GCF_000002985.6_WBcel235_genomic.fna.gz       GCF_000008685.2_ASM868v2_genomic.fna.gz        Sea_cuke
+GCF_000840245.1_ViralProj14204_genomic.fna.gz  
+
+#using wget command to download reads from BenLangmead github
+[gottschalk.w@d0126 gottschalk.w]$ wget https://github.com/BenLangmead/bowtie2/raw/refs/heads/master/example/reads/reads_1.fq
+--2026-10-01 12:50:07--  https://github.com/BenLangmead/bowtie2/raw/refs/heads/master/example/reads/reads_1.fq
+
+[gottschalk.w@d0126 gottschalk.w]$ wget https://github.com/BenLangmead/bowtie2/raw/refs/heads/master/example/reads/reads_2.fq
+--2026-10-01 12:50:24--  https://github.com/BenLangmead/bowtie2/raw/refs/heads/master/example/reads/reads_2.fq
+
+#using gunzip and * to unzip all genome files
+[gottschalk.w@d0126 gottschalk.w]$ gunzip *.fna.gz
+[gottschalk.w@d0126 gottschalk.w]$ ls
+bioinformatics-portfolio              GCF_000008685.2_ASM868v2_genomic.fna        reads_1.fq  seq.files
+
+#making directory to keep all genome info in
+[gottschalk.w@d0126 gottschalk.w]$ mkdir Genomic_data
+
+#moving to genome direcotry and making a genome info file to type out genome information for the files that were downloaded earlier
+[gottschalk.w@d0126 gottschalk.w]$ cd Genomic_data/
+[gottschalk.w@d0126 Genomic_data]$ touch Genomes_info
+[gottschalk.w@d0126 Genomic_data]$ nano Genomes_info
+
+
+[gottschalk.w@d0126 Genomic_data]$ cd ..
+[gottschalk.w@d0126 gottschalk.w]$ ls
+bioinformatics-portfolio  GCF_000002985.6_WBcel235_genomic.fna  GCF_000840245.1_ViralProj14204_genomic.fna  inclass.work  reads_2.fq  seq.files
+fastq_files               GCF_000008685.2_ASM868v2_genomic.fna  Genomic_data                                reads_1.fq    Sea_cuke
+
+#using wget to download human genome from the web
+[gottschalk.w@d0126 gottschalk.w]$ wget https://ftp.ensembl.org/pub/release-116/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+--2026-10-01 13:02:25--  https://ftp.ensembl.org/pub/release-116/fasta/homo_sapiens/dna/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+
+#unzip the human genome with gunzip
+[gottschalk.w@d0126 gottschalk.w]$ gunzip *.fa.gz
+[gottschalk.w@d0126 gottschalk.w]$ ls
+bioinformatics-portfolio  GCF_000002985.6_WBcel235_genomic.fna  GCF_000840245.1_ViralProj14204_genomic.fna  Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa  reads_1.fq  Sea_cuke
+fastq_files               GCF_000008685.2_ASM868v2_genomic.fna  Genomic_data                                inclass.work                                    reads_2.fq  seq.files
+[gottschalk.w@d0126 gottschalk.w]$ cd Genomic_data/
+[gottschalk.w@d0126 Genomic_data]$ ls
+Genomes_info
+[gottschalk.w@d0126 Genomic_data]$ nano Genomes_info
+
+#getting the anaconda module and emboss env to use infoseq on the genomic data
+(base) [gottschalk.w@explorer-01 Genomic_data]$ module load anaconda3/2024.06
+(base) [gottschalk.w@explorer-01 Genomic_data]$ source activate /courses/BIOL2406.202710/shared/emboss_env
+
+#infoseq the nematodes genome
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@explorer-01 Genomic_data]$ infoseq GCF_000002985.6_WBcel235_genomic.fna
+USA                      Database  Name           Accession      Type Length %GC    Organism            Description
+fasta::GCF_000002985.6_WBcel235_genomic.fna:NC_003279.8 -              NC_003279.8    -              N    15072434 35.75                      Caenorhabditis elegans chromosome I
+
+#infoseq the borrelia genome
+(/courses/BIOL2406.202710/shared/emboss_env) [gottschalk.w@explorer-01 Genomic_data]$ infoseq GCF_000008685.2_ASM868v2_genomic.fna
+USA                      Database  Name           Accession      Type Length %GC    Organism            Description
+fasta::GCF_000008685.2_ASM868v2_genomic.fna:NC_001318.1 -              NC_001318.1    -              N    910724 28.60                      Borreliella burgdorferi B31, complete sequence
+
+#Answers to questions asked in module, 7 files for the worm genome, 22 files for Borrelia genome, the complete genome seq has the lowest GC for the worms, plasmid lp21 has the lowest GC for the borelli and it is a plasmid

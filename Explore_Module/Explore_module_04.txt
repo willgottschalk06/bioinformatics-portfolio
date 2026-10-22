@@ -1,0 +1,110 @@
+
+(base) [gottschalk.w@c0612 Genomic_data]$ cd SRRfastq_files/
+	#showing modules that were active
+(base) [gottschalk.w@c0612 SRRfastq_files]$ module list
+Currently Loaded Modulefiles:
+ 1) explorer/1.0   2) OpenJDK/22.0.2   3) perl/5.40.0   4) fastqc/0.12.1   5) bowtie2/2.5.4   6) samtools/1.21
+
+	#using fastqc to make read quality file for fastq files, no need to cut these after looking at read quality it seems adapter sequences are not there.
+(base) [gottschalk.w@c0612 SRRfastq_files]$ fastqc *.fastq
+Started analysis of SRR1039508_1.fastq
+(base) [gottschalk.w@c0612 SRRfastq_files]$ ls
+SRR1039508_1_fastqc.html  SRR1039512_1_fastqc.html  SRR1039516_1_fastqc.html  SRR1039520_1_fastqc.html
+
+	#navigating to the star environment and activating it
+(base) [gottschalk.w@c0612 SRRfastq_files]$ cd ..
+(base) [gottschalk.w@c0612 Genomic_data]$ cd ..
+(base) [gottschalk.w@c0612 gottschalk.w]$ cd ..
+(base) [gottschalk.w@c0612 students]$ cd ..
+(base) [gottschalk.w@c0612 BIOL2406.202710]$ cd shared/
+(base) [gottschalk.w@c0612 shared]$ conda activate star_env/
+(/courses/BIOL2406.202710/shared/star_env) [gottschalk.w@c0612 shared]$ cd /courses/BIOL2406.202710/students/gottschalk.w/Genomic_data/
+	#creating batch script in order to build index for the genome.
+(/courses/BIOL2406.202710/shared/star_env) [gottschalk.w@c0612 Genomic_data]$ nano Star_Index.sh
+
+#!/bin/bash
+#SBATCH -J starindex
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=48G
+#SBATCH -o output_%j.txt
+#SBATCH -e error_%j.txt
+#SBATCH -t 04:00:00
+
+# Activate the STAR conda environment (two steps!)
+module load anaconda3/2024.06
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate /courses/BIOL2406.202710/shared/star_env
+# Output directory for the index
+mkdir -p star_index
+
+STAR --runMode genomeGenerate \
+     --runThreadN $SLURM_CPUS_PER_TASK \
+     --genomeDir star_index \
+     --genomeFastaFiles Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa \
+     --sjdbGTFfile Homo_sapiens.GRCh38.115.gtf \
+     --sjdbOverhang 100
+	
+	#runnign batch script 
+(base) [gottschalk.w@c0664 Genomic_data]$ sbatch Star_Index.sh
+
+	#creating batch script for maping genome
+(base) [gottschalk.w@c0664 Genomic_data]$ nano Star_Map.sh
+
+#!/bin/bash
+#SBATCH -J alignWG
+#SBATCH -N 1
+#SBATCH -n 1
+#SBATCH -o output_%j.txt
+#SBATCH -e error_%j.txt
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=80G
+#SBATCH --time=12:00:00
+
+# load anaconda and activate star conda environment – you know how to do this!
+module load anaconda3/2024.06
+source "$(conda info --base)/etc/profile.d/conda.sh"
+conda activate /courses/BIOL2406.202710/shared/star_env
+# Directory containing the genome index
+GENOME_DIR="star_index"
+
+# Directory containing the fastq files
+FASTQ_DIR="FASTQ_DIR"
+
+# Directory for the results
+OUT_DIR="aligned_output"
+
+# Create the output directory if it doesn't already exist
+mkdir -p "$OUT_DIR"
+
+# Loop through each read 1 file
+for read1 in "$FASTQ_DIR"/*_1.fastq; do
+
+    # Get the sample name by removing the directory and the _1.fastq ending
+    sample=$(basename "$read1" _1.fastq)
+
+    # The matching read 2 file
+    read2="$FASTQ_DIR/${sample}_2.fastq"
+
+    # Run STAR
+    STAR --genomeDir "$GENOME_DIR" \
+         --readFilesIn "$read1" "$read2" \
+         --runThreadN 16 \
+         --outFileNamePrefix "$OUT_DIR/${sample}_" \
+         --outSAMtype BAM SortedByCoordinate \
+         --limitBAMsortRAM 40000000000
+
+done
+	#making directory for fastq files to match the batch script created
+(base) [gottschalk.w@c0664 Genomic_data]$ mkdir FASTQ_DIR
+	#moving fastq files to new directory
+(base) [gottschalk.w@c0664 Genomic_data]$ mv *.fastq FASTQ_DIR/
+	#running the batch script
+(base) [gottschalk.w@c0664 Genomic_data]$ sbatch Star_Map.sh
+Submitted batch job 11220535
+	#changing to output directory and using ls -l to view all the files created from the batch script
+(base) [gottschalk.w@explorer-02 Genomic_data]$ cd aligned_output/
+(base) [gottschalk.w@explorer-02 aligned_output]$ ls -l
+total 19676799
+-rw-r--r-- 1 gottschalk.w BIOL2406.202710-staff          0 Oct 19 08:51 '*_Aligned.sortedByCoord.out.bam'
